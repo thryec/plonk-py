@@ -1,0 +1,3 @@
+[submodule "plonkathon"]
+	path = plonkathon
+	url = https://github.com/thryec/plonkathon.git
