@@ -1,6 +1,6 @@
 # PLONK theory
 
-Protocol notes only — no code. Sketch of the 5 prover rounds, the polynomial identities they enforce, and how arithmetization turns a circuit into polynomial constraints.
+Sketch of the 5 prover rounds, the polynomial identities they enforce, and how arithmetization turns a circuit into polynomial constraints.
 
 ## Contents
 
