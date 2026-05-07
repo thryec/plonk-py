@@ -1,17 +1,11 @@
-# Polynomials
+# polynomials
 
-Math primitives for PLONK: polynomial arithmetic over finite fields, Lagrange interpolation, and the Schwartz-Zippel lemma for probabilistic equality checks.
+Polynomial primitives over finite fields, used as building blocks for KZG commitments and PLONK.
 
 ## Files
-
-_(implementation in progress)_
-
-- `lagrange.py` — Lagrange interpolation from a set of points
-- `schwartz_zippel.py` — vector equality check via random evaluation
-- `polynomial_ops.py` — add, multiply, divide (with remainder), evaluate
+- `lagrange.py` — Lagrange interpolation through (x, y) points
+- `schwartz_zippel.py` — vector equality via random polynomial evaluation
+- `polynomial_ops.py` — add, multiply, evaluate (Horner), divmod
 
 ## References
-
-- [Lagrange interpolation (RareSkills)](https://rareskills.io/post/lagrange-interpolation)
-- [Schwartz-Zippel lemma (RareSkills)](https://rareskills.io/post/schwartz-zippel-lemma)
-- [zkiap session 3](https://zkiap.com/) — math building blocks
+- RareSkills ZK Book: [Lagrange](https://rareskills.io/post/lagrange-interpolation), [Schwartz-Zippel](https://rareskills.io/post/schwartz-zippel-lemma)

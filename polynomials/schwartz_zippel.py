@@ -1,5 +1,4 @@
 import random
-
 import galois
 import numpy as np
 
