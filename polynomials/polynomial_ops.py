@@ -42,8 +42,30 @@ def poly_mul(p1, p2):
     return result
 
 
-def poly_div(p1, p2, GF):
-    pass
+def poly_div(p1, p2):
+    GF = p1.field
+    dividend = list(p1.coeffs)
+    divisor = list(p2.coeffs)
+
+    if len(divisor) == 0:
+        raise ZeroDivisionError("divide by zero polynomials")
+
+    quotient_coeffs = []
+
+    # when dividend's degree >= divisor's degree
+    while len(dividend) >= len(divisor):
+        coeff = dividend[0] / divisor[0]
+        quotient_coeffs.append(coeff)
+
+        for i in range(len(divisor)):
+            dividend[i] = dividend[i] - coeff * divisor[i]
+
+        dividend = dividend[1:]
+
+    quotient = galois.Poly(quotient_coeffs, field=GF) if quotient_coeffs else galois.Poly([0], field=GF)
+    remainder = galois.Poly(dividend, field=GF) if dividend else galois.Poly([0], field=GF)
+
+    return quotient, remainder
 
 
 if __name__ == "__main__":
@@ -69,4 +91,14 @@ if __name__ == "__main__":
     truth = m1 * m2
     assert poly_mul(m1, m2) == list(truth.coeffs)[::-1]
 
-    # next: implement poly_div
+    # poly_div — (x³ + 2x² + 3x + 5) / (x + 1) = (x² + x + 2) remainder 3
+    d1 = galois.Poly([1, 2, 3, 5], field=GF)  # x³ + 2x² + 3x + 5
+    d2 = galois.Poly([1, 1], field=GF)  # x + 1
+    q, r = poly_div(d1, d2)
+    assert q == galois.Poly([1, 1, 2], field=GF)  # x² + x + 2
+    assert r == galois.Poly([3], field=GF)  # constant 3
+
+    # oracle: galois divmod
+    truth_q, truth_r = divmod(d1, d2)
+    assert q == truth_q
+    assert r == truth_r
